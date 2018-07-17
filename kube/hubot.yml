@@ -43,7 +43,7 @@ spec:
           value: CI_HUBOT_SLACK_TOKEN
         - name: SUPERUSERS
           value: CI_SUPERUSERS
-        image: volentixlabs/vbot:v0.0.1
+        image: volentixlabs/vbot:v0.0.2
         name: vbot-service
         ports:
         - containerPort: 80

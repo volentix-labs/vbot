@@ -3,7 +3,6 @@ const request = require('request');
 module.exports = function(robot) {
 
     const superusers = process.env.SUPERUSERS.split(",");
-    console.log(superusers);
 
     robot.respond(/(.*) versions/i, function(res) {
         var name =  res.envelope.user.name;
