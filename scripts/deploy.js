@@ -37,13 +37,13 @@ module.exports = function(robot) {
             if (servicename === 'ui') {
                 (async () => {
                     uatUiDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueui:" + version;
-                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments('venue-deployment').put({ body: uatUiDeployment })
+                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uatUiDeployment })
                     res.send("Please check that the update to the Server has been successful.");
                 })();
             } else {
                 (async () => {
                     uatServerDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueserver:" + version;
-                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments('venue-ui-service').put({ body: uatServerDeployment })
+                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: uatServerDeployment })
                     res.send("Please check that the update to the UI has been successful.");
                 })();
             }
