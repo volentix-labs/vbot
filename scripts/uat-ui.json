@@ -1,0 +1,32 @@
+{
+    "apiVersion": "apps/v1beta1",
+    "kind": "Deployment",
+    "metadata": {
+      "name": "venue-ui-service",
+      "namespace": "venue-uat"
+    },
+    "spec": {
+      "replicas": 1,
+      "template": {
+        "metadata": {
+          "labels": {
+            "application": "venue-ui",
+            "version": "v1"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "name": "venue-ui-service",
+              "image": "PLACEHOLDER",
+              "ports": [
+                {
+                  "containerPort": 3000
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }

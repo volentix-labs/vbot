@@ -1,0 +1,114 @@
+{
+  "apiVersion": "extensions/v1beta1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "venue-deployment",
+    "namespace": "venue-uat"
+  },
+  "spec": {
+    "replicas": 1,
+    "template": {
+      "metadata": {
+        "labels": {
+          "application": "venue",
+          "name": "venue",
+          "version": "0.1.0"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "args": [
+              "supervisord",
+              "-c",
+              "./supervisord.conf",
+              "--nodaemon"
+            ],
+            "command": [
+              "/entrypoint.sh"
+            ],
+            "name": "django-service",
+            "image": "PLACEHOLDER",
+            "ports": [
+              {
+                "containerPort": 8000
+              },
+              {
+                "containerPort": 5555
+              }
+            ],
+            "env": [
+              {
+                "name": "POSTGRES_HOST",
+                "value": "postgres-service-uat"
+              },
+              {
+                "name": "POSTGRES_USER",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "postgres-secrets",
+                    "key": "user"
+                  }
+                }
+              },
+              {
+                "name": "VENUE_DOMAIN",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "postgres-secrets",
+                    "key": "email-domain"
+                  }
+                }
+              },
+              {
+                "name": "VENUE_FRONTEND",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "postgres-secrets",
+                    "key": "email-domain"
+                  }
+                }
+              },
+              {
+                "name": "POSTGRES_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "postgres-secrets",
+                    "key": "password"
+                  }
+                }
+              },
+              {
+                "name": "POSTGRES_NAME",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "postgres-secrets",
+                    "key": "dbname"
+                  }
+                }
+              },
+              {
+                "name": "REDIS_HOST",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "redis-credentials",
+                    "key": "host"
+                  }
+                }
+              },
+              {
+                "name": "REDIS_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "redis-credentials",
+                    "key": "password"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

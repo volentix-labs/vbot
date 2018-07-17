@@ -2,4 +2,4 @@ node_modules
 .DS_Store*
 .hubot_history
 notes
-kube/local.hubot.yml
+kube/local.*.yml

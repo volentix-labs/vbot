@@ -8,20 +8,27 @@ module.exports = function(robot) {
 
     const about =
         'About\n' +
-        '=====\n' +
+        '=====\n.' +
         '\n' +
         'Get Dockerhub Verions\n' +
         '---------------------\n' +
-        'Command: vbot <NAME> docker versions\n' +
+        'vbot <NAME> docker versions\n' +
         'Args:\n' +
         '\tNAME: (venueserver | venueui) This is the name of the repository in Dockerhub for volentixlabs.' +
-        '\n\n' +
+        '\n.\n' +
         'Get Versions Running In Environment\n' +
         '-----------------------------------\n' +
-        'Command: vbot get <COMPONENT> version in <ENV>\n' +
+        'vbot get <COMPONENT> version in <ENV>\n' +
         'Args:\n' +
         '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
-        '\tENV:        (dev | uat | prod) This is the environment from which we wish to glean the information.';
+        '\tENV:       (dev | uat | prod) This is the environment from which we wish to glean the information.\n.\n' +
+        'Deploy A Version In An Environment\n' +
+        '----------------------------------\n' +
+        'vbot deploy version <VERSION> of <COMPONENT> in <ENV>\n' +
+        'Args:\n' +
+        '\VERSION:    (server | ui) This is the component we are seeking.\n' +
+        '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
+        '\tENV:       (uat) ONLY SUPPORTS UAT FOR NOW: This is the environment from which we wish to glean the information.\n.\n';
 
     robot.respond(/about/i, function(res) {
         (async () => {

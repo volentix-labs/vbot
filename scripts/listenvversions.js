@@ -22,13 +22,14 @@ module.exports = function(robot) {
                 "  1. server\n" +
                 "  2. ui\n";
             res.send(error);
-        } else if (env !== 'dev' && env !== 'prod') {
+        } else if (env !== 'dev' && env !== 'uat' && env !== 'prod') {
             const error = 
                 servicename + " is NOT a known namespace (env).\n" +
                 "Supported Namespaces: \n" +
                 "================ \n" +
                 "  1. dev\n" +
-                "  2. prod\n";
+                "  2. uat\n" +
+                "  3. prod\n";
             res.send(error);
         } else {
             (async () => {
@@ -39,23 +40,6 @@ module.exports = function(robot) {
                 const deploy = await client.apis.apps.v1.namespaces('venue-' + env).deployments(deploymentName).get()
                 res.send("Venue-deployment:\n" + deploy.body.spec.template.spec.containers[0].image);
             })();
-
-            
-
-
-            /*
-            request("https://hub.docker.com/v2/repositories/volentixlabs/" + servicename +"/tags/", { json: true }, function (err, r, body) {
-                var versionInformation = 
-                    "Latest Version\n" +
-                    "=============\n" +
-                    body.results[0].name + " Created On: " + body.results[0].last_updated + "\n\n" +
-                    "Last Two Versions\n" +
-                    "=================\n" +
-                    body.results[1].name + " Created On: " + body.results[1].last_updated + "\n" +
-                    body.results[2].name + " Created On: " + body.results[2].last_updated + "\n";
-                res.send(versionInformation);
-            });
-            */
         }
     });
 }
