@@ -2,14 +2,10 @@ const request = require('request');
 
 module.exports = function(robot) {
 
-    const superusers = process.env.SUPERUSERS.split(",");
-
-    robot.respond(/(.*) versions/i, function(res) {
-        var name =  res.envelope.user.name;
+    robot.respond(/(.*) docker versions/i, function(res) {
         var servicename = res.match[1];
-        if(!superusers.includes(name)) {
-            res.send("Sorry " + name + ". I'm afraid I can't let you do that.");
-        } else if (servicename !== 'venueserver' && servicename !== 'venueui') {
+        console.log("SNAME: ." + servicename + ".");
+        if (servicename !== 'venueserver' && servicename !== 'venueui') {
             const error = 
                 servicename + " is NOT a known repo.\n" +
                 "Supported Repos: \n" +
