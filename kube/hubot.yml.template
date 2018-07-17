@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vbot-deployment
+  namespace: vbot
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        application: vbot
+        name: vbot
+        version: "0.1.0"
+    spec:
+      serviceAccount: vbot-sa
+      containers:
+      - env:
+        - name: HUBOT_SLACK_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: vbot-secrets
+              key: slack-token
+        - name: SUPERUSERS
+          valueFrom:
+            secretKeyRef:
+              name: vbot-secrets
+              key: superusers
+        image: volentixlabs/vbot:IMAGE_VERSION
+        name: vbot-service
+        ports:
+        - containerPort: 80

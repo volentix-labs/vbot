@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+          TAG=v0.1.$CIRCLE_BUILD_NUM
+          docker build -t volentixlabs/vbot:$TAG .
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push volentixlabs/vbot:$TAG
+  deploy:
+    docker:
+      - image: volentixlabs/aws-kube-deploy:v0.1.2
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: kops export kubecfg
+      - run: |
+          TAG=v0.1.$CIRCLE_PREVIOUS_BUILD_NUM
+          sed 's/IMAGE_VERSION/'$TAG'/' kube/hubot.yml.template > kube/hubot.yml
+          kubectl apply -f kube/hubot.yml
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
