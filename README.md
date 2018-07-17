@@ -20,7 +20,7 @@ This repo houses the Slack//Hubot integration in order to support some of the te
 - [License](#license)
 
 ## Install
- 
+
 Currently, the repo is pretty much hard coded for our use case, however, should you fork it and want to modify it for your own room, you will need to set the following two environment vars:
 
 HUBOT_SLACK_TOKEN: the token created for you on Slack.
