@@ -37,7 +37,7 @@ module.exports = function(robot) {
             if (servicename === 'ui') {
                 (async () => {
                     uatUiDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueui:" + version;
-                    const create = await client.apis.apps.v1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uatUiDeployment })
+                    const create = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uatUiDeployment })
                     res.send("UI: Please check that the update has been successful.");
                 })();
             } else {
