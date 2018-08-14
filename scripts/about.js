@@ -16,6 +16,14 @@ module.exports = function(robot) {
         'Args:\n' +
         '\tNAME: (venueserver | venueui) This is the name of the repository in Dockerhub for volentixlabs.' +
         '\n.\n' +
+
+        'List All Versions\n' +
+        '---------------------\n' +
+        'vbot list all <COMPONENT> versions\n' +
+        'Args:\n' +
+        '\tNAME: (server | ui) The component we want the versions of.' +
+        'Desc: Lists the version running in all the environments for the component.' +
+        '\n.\n' +
         'Get Versions Running In Environment\n' +
         '-----------------------------------\n' +
         'vbot get <COMPONENT> version in <ENV>\n' +
