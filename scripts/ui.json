@@ -3,7 +3,7 @@
     "kind": "Deployment",
     "metadata": {
       "name": "venue-ui-service",
-      "namespace": "venue-uat"
+      "namespace": "PLACEHOLDER"
     },
     "spec": {
       "replicas": 1,

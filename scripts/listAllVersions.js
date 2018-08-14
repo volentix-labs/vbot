@@ -26,14 +26,15 @@ module.exports = function(robot) {
                     deploymentName = 'venue-deployment';
                 }
                 const devv = await client.apis.apps.v1.namespaces('venue-dev').deployments(deploymentName).get();
-                const uat = await client.apis.apps.v1.namespaces('venue-uat').deployments(deploymentName).get();
-
+                const uat = await client.apis.apps.v1.namespaces('venue-uat').deployments(deploymentName).get();k
+                const perf = await client.apis.apps.v1.namespaces('venue-perf').deployments(deploymentName).get();
                 
                 
                 const message = 
                     "Venue " + servicename + " versions\n" +
                     "DEV: " + devv.body.spec.template.spec.containers[0].image + "\n" +
-                    "UAT: " + uat.body.spec.template.spec.containers[0].image + "\n";
+                    "UAT: " + uat.body.spec.template.spec.containers[0].image + "\n"  +
+                    "PERF: " + perf.body.spec.template.spec.containers[0].image + "\n";
 
                 res.send(message);
             })();

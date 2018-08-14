@@ -1,11 +1,10 @@
-const uatServerDeployment = require('./uat-server.json');
-const uatUiDeployment = require('./uat-ui.json');
+const serverDeployment = require('./server.json');
+const uiDeployment = require('./ui.json');
 const request = require('request');
 const Client = require('kubernetes-client').Client;
 const config = require('kubernetes-client').config;
 const client = new Client({ config: config.getInCluster() });
 client.loadSpec();
-//https://raw.githubusercontent.com/godaddy/kubernetes-client/ea6725373b2a7a8ef9b79fc6aabd51101cd9ab84/docs/1.9.md
 
 module.exports = function(robot) {
 
@@ -37,14 +36,14 @@ module.exports = function(robot) {
         } else {
             if (servicename === 'ui') {
                 (async () => {
-                    uatUiDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueui:" + version;
-                    const create = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uatUiDeployment })
+                    uiDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueui:" + version;
+                    const create = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uiDeployment })
                     res.send("UI: Please check that the update has been successful.");
                 })();
             } else {
                 (async () => {
-                    uatServerDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueserver:" + version;
-                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: uatServerDeployment })
+                    serverDeployment.spec.template.spec.containers[0].image = "volentixlabs/venueserver:" + version;
+                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: serverDeployment })
                     res.send("Server: Please check that the update has been successful.");
                 })();
             }
