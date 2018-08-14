@@ -8,7 +8,7 @@ module.exports = function(robot) {
 
     const superusers = process.env.SUPERUSERS.split(",");
 
-    robot.respond(/list all (.*) versions/i, function(res) {
+    robot.respond(/list (.*) versions/i, function(res) {
         const name =  res.envelope.user.name;
         const servicename = res.match[1]; 
         if (servicename !== 'server' && servicename !== 'ui') {

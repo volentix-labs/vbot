@@ -10,27 +10,14 @@ module.exports = function(robot) {
         'About\n' +
         '=====\n.' +
         '\n' +
-        'Get Dockerhub Verions\n' +
-        '---------------------\n' +
-        'vbot <NAME> docker versions\n' +
-        'Args:\n' +
-        '\tNAME: (venueserver | venueui) This is the name of the repository in Dockerhub for volentixlabs.' +
-        '\n.\n' +
-
+        
         'List All Versions\n' +
         '---------------------\n' +
-        'vbot list all <COMPONENT> versions\n' +
+        'vbot list <COMPONENT> versions\n' +
         'Args:\n' +
         '\tNAME: (server | ui) The component we want the versions of.' +
         'Desc: Lists the version running in all the environments for the component.' +
         '\n.\n' +
-
-        'Get Versions Running In Environment\n' +
-        '-----------------------------------\n' +
-        'vbot get <COMPONENT> version in <ENV>\n' +
-        'Args:\n' +
-        '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
-        '\tENV:       (dev | uat | prod) This is the environment from which we wish to glean the information.\n.\n' +
 
         'Promote Dev\n' +
         '---------------------\n' +
@@ -48,13 +35,23 @@ module.exports = function(robot) {
         'Desc: Promotes the COMPONENT from uat to prod. Only admins and superusers can do this.' +
         '\n.\n' +
 
-        'Deploy A Version In An Environment\n' +
+        'Revert UAT & PERF\n' +
         '----------------------------------\n' +
-        'vbot deploy version <VERSION> of <COMPONENT> in <ENV>\n' +
+        'vbot revert uat <COMPONENT> to version <VERSION>\n' +
         'Args:\n' +
-        '\VERSION:    (server | ui) This is the component we are seeking.\n' +
         '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
-        '\tENV:       (uat) ONLY SUPPORTS UAT FOR NOW: This is the environment from which we wish to glean the information.\n.\n';
+        '\VERSION:    (server | ui) This is the component we are seeking.\n' +
+        'Desc: Revert the component to a specific version in uat and perf. Note that developers can do this.' +
+        '\n.\n' +
+
+        'Revert PROD\n' +
+        '----------------------------------\n' +
+        'vbot revert prod <COMPONENT> to version <VERSION>\n' +
+        'Args:\n' +
+        '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
+        '\VERSION:    (server | ui) This is the component we are seeking.\n' +
+        'Desc: Revert the component to a specific version in prod. Note that only superusers can perform this action.';
+        
 
     robot.respond(/about/i, function(res) {
         (async () => {
