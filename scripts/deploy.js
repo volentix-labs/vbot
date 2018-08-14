@@ -5,6 +5,7 @@ const Client = require('kubernetes-client').Client;
 const config = require('kubernetes-client').config;
 const client = new Client({ config: config.getInCluster() });
 client.loadSpec();
+//https://raw.githubusercontent.com/godaddy/kubernetes-client/ea6725373b2a7a8ef9b79fc6aabd51101cd9ab84/docs/1.9.md
 
 module.exports = function(robot) {
 

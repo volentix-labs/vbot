@@ -40,7 +40,7 @@
             "env": [
               {
                 "name": "POSTGRES_HOST",
-                "value": "postgres-service-uat"
+                "value": "postgres-service"
               },
               {
                 "name": "POSTGRES_USER",

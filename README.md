@@ -26,6 +26,7 @@ Currently, the repo is pretty much hard coded for our use case, however, should 
 HUBOT_SLACK_TOKEN: the token created for you on Slack.
 SUPERUSERS: A list of Slack user names (comma separated with no spaces), that have the permission to deply using the vbot.
 
+
 ## Usage
 
 The API supports the following calls:
