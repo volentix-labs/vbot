@@ -24,12 +24,22 @@ module.exports = function(robot) {
         '\tNAME: (server | ui) The component we want the versions of.' +
         'Desc: Lists the version running in all the environments for the component.' +
         '\n.\n' +
+
         'Get Versions Running In Environment\n' +
         '-----------------------------------\n' +
         'vbot get <COMPONENT> version in <ENV>\n' +
         'Args:\n' +
         '\tCOMPONENT: (server | ui) This is the component we are seeking.\n' +
         '\tENV:       (dev | uat | prod) This is the environment from which we wish to glean the information.\n.\n' +
+
+        'Promote Dev\n' +
+        '---------------------\n' +
+        'vbot promote dev <COMPONENT>\n' +
+        'Args:\n' +
+        '\tNAME: (server | ui) The component we want to promote.' +
+        'Desc: Promotes the COMPONENT from dev to uat and perf.' +
+        '\n.\n' +
+
         'Deploy A Version In An Environment\n' +
         '----------------------------------\n' +
         'vbot deploy version <VERSION> of <COMPONENT> in <ENV>\n' +
