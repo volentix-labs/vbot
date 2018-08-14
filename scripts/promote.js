@@ -31,10 +31,10 @@ module.exports = function(robot) {
                     const devui = await client.apis.apps.v1.namespaces('venue-dev').deployments('venue-ui-service').get();
                     uiDeployment.metadata.namespace = "venue-uat";
                     uiDeployment.spec.template.spec.containers[0].image = devui.body.spec.template.spec.containers[0].image;
-                    const create = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uiDeployment })
+                    const createuat = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uiDeployment })
                     // now do perf.
                     uiDeployment.metadata.namespace = "venue-perf";
-                    const create = await client.apis.apps.v1beta1.namespaces('venue-perf').deployments( 'venue-ui-service').put({ body: uiDeployment })
+                    const createperf = await client.apis.apps.v1beta1.namespaces('venue-perf').deployments( 'venue-ui-service').put({ body: uiDeployment })
                     res.send("UI: Please check that the update has been successful.");
                 })();
             } else {
@@ -43,10 +43,10 @@ module.exports = function(robot) {
                     const devserver = await client.apis.apps.v1.namespaces('venue-dev').deployments('venue-deployment').get();
                     serverDeployment.metadata.namespace = "venue-uat";
                     serverDeployment.spec.template.spec.containers[0].image = devserver.body.spec.template.spec.containers[0].image;
-                    const create = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: serverDeployment })
+                    const createuat = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: serverDeployment })
                     
                     serverDeployment.metadata.namespace = "venue-perf";
-                    const create = await client.apis.extensions.v1beta1.namespaces('venue-perf').deployments( 'venue-deployment').put({ body: serverDeployment })
+                    const createperf = await client.apis.extensions.v1beta1.namespaces('venue-perf').deployments( 'venue-deployment').put({ body: serverDeployment })
                     res.send("Server: Please check that the update has been successful.");
                 })();
             }
