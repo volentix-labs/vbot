@@ -25,6 +25,11 @@ spec:
             secretKeyRef:
               name: vbot-secrets
               key: superusers
+        - name: DEVELOPERS
+          valueFrom:
+            secretKeyRef:
+              name: vbot-secrets
+              key: developers
         image: volentixlabs/vbot:IMAGE_VERSION
         name: vbot-service
         ports:

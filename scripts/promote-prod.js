@@ -10,7 +10,7 @@ module.exports = function(robot) {
 
     const superusers = process.env.SUPERUSERS.split(",");
 
-    robot.respond(/promote dev (.*)/i, function(res) {
+    robot.respond(/promote uat (.*)/i, function(res) {
         const name =  res.envelope.user.name;
         const servicename = res.match[1];
 
@@ -27,26 +27,19 @@ module.exports = function(robot) {
         } else {
             if (servicename === 'ui') {
                 (async () => {
-                    
-                    const devui = await client.apis.apps.v1.namespaces('venue-dev').deployments('venue-ui-service').get();
-                    uiDeployment.metadata.namespace = "venue-uat";
+                    const devui = await client.apis.apps.v1.namespaces('venue-uat').deployments('venue-ui-service').get();
+                    uiDeployment.metadata.namespace = "venue-prod";
                     uiDeployment.spec.template.spec.containers[0].image = devui.body.spec.template.spec.containers[0].image;
-                    const createuat = await client.apis.apps.v1beta1.namespaces('venue-uat').deployments( 'venue-ui-service').put({ body: uiDeployment })
-                    // now do perf.
-                    uiDeployment.metadata.namespace = "venue-perf";
-                    const createperf = await client.apis.apps.v1beta1.namespaces('venue-perf').deployments( 'venue-ui-service').put({ body: uiDeployment })
+                    const createuat = await client.apis.apps.v1beta1.namespaces('venue-prod').deployments( 'venue-ui-service').put({ body: uiDeployment })
                     res.send("UI: Please check that the update has been successful.");
                 })();
             } else {
                 (async () => {
 
-                    const devserver = await client.apis.apps.v1.namespaces('venue-dev').deployments('venue-deployment').get();
-                    serverDeployment.metadata.namespace = "venue-uat";
+                    const devserver = await client.apis.apps.v1.namespaces('venue-uat').deployments('venue-deployment').get();
+                    serverDeployment.metadata.namespace = "venue-prod";
                     serverDeployment.spec.template.spec.containers[0].image = devserver.body.spec.template.spec.containers[0].image;
-                    const createuat = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: serverDeployment })
-                    
-                    serverDeployment.metadata.namespace = "venue-perf";
-                    const createperf = await client.apis.extensions.v1beta1.namespaces('venue-perf').deployments( 'venue-deployment').put({ body: serverDeployment })
+                    const createuat = await client.apis.extensions.v1beta1.namespaces('venue-prod').deployments( 'venue-deployment').put({ body: serverDeployment })
                     res.send("Server: Please check that the update has been successful.");
                 })();
             }

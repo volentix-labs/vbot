@@ -37,7 +37,15 @@ module.exports = function(robot) {
         'vbot promote dev <COMPONENT>\n' +
         'Args:\n' +
         '\tNAME: (server | ui) The component we want to promote.' +
-        'Desc: Promotes the COMPONENT from dev to uat and perf.' +
+        'Desc: Promotes the COMPONENT from dev to uat and perf. Note that developers can do this.' +
+        '\n.\n' +
+
+        'Promote Prod\n' +
+        '---------------------\n' +
+        'vbot promote prod <COMPONENT>\n' +
+        'Args:\n' +
+        '\tNAME: (server | ui) The component we want to promote.' +
+        'Desc: Promotes the COMPONENT from uat to prod. Only admins and superusers can do this.' +
         '\n.\n' +
 
         'Deploy A Version In An Environment\n' +
