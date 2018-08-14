@@ -29,20 +29,9 @@ SUPERUSERS: A list of Slack user names (comma separated with no spaces), that ha
 
 ## Usage
 
-The API supports the following calls:
+The flowing video shows how to use VBot on Slack.
 
-### List Release Versions
-
-The following call will look at the docker hub and print out the 3 last release versions of the software.
-
-The call is:
-```
-vbot <REPONAME> versions
-```
-
-Where REPONAME is one of the following
-  * venueui
-  * venueserver
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EgHrQtKWKgc/0.jpg)](https://www.youtube.com/watch?v=EgHrQtKWKgc)
 
 ## Maintainers
 
