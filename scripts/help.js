@@ -10,7 +10,7 @@ module.exports = function(robot) {
         'Commands\n' +
         '=====\n.' +
         '\n' +
-
+        'vbot links\n' +
         'vbot list (server | ui) versions\n' +
         'vbot promote (dev | uat) (server | ui)\n' +
         'vbot revert (uat | prod) (server | ui) to version (DOCKER_VERSION_NUMBER)\n' + 
