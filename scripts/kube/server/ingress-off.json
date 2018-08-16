@@ -1,0 +1,47 @@
+{
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Ingress",
+    "metadata": {
+      "name": "venue-django-ing",
+      "namespace": "venue-perf",
+      "labels": {
+        "application": "venue"
+      },
+      "annotations": {
+        "kubernetes.io/ingress.class": "nginx",
+        "nginx.ingress.kubernetes.io/force-ssl-redirect": "true"
+      }
+    },
+    "spec": {
+      "rules": [
+        {
+          "host": "venue-perf.volentix.io",
+          "http": {
+            "paths": [
+              {
+                "path": "/api",
+                "backend": {
+                  "serviceName": "venue-service",
+                  "servicePort": 80
+                }
+              },
+              {
+                "path": "/static",
+                "backend": {
+                  "serviceName": "venue-service",
+                  "servicePort": 80
+                }
+              },
+              {
+                "path": "/media/uploads",
+                "backend": {
+                  "serviceName": "venue-service",
+                  "servicePort": 80
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
