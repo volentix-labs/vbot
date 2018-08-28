@@ -50,7 +50,7 @@ module.exports = function(robot) {
             if (environment === 'prod') {
                 //change this once the DNS us rerouted.
                 // ingress.spec.rules[0].host = 'venue.volentix.io';
-                ingress.spec.rules[0].host = 'venue-' + environment +'.volentix.io';
+                ingress.spec.rules[0].host = 'venue.volentix.io';
             } else {
                 ingress.spec.rules[0].host = 'venue-' + environment +'.volentix.io';
             }
