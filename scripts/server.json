@@ -39,6 +39,10 @@
 						],
 						"env": [
 							{
+								"name": "ENV",
+								"value": "dev"
+							},
+							{
 								"name": "POSTGRES_USER",
 								"valueFrom": {
 									"secretKeyRef": {

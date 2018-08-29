@@ -42,10 +42,12 @@ module.exports = function(robot) {
 
                     const devserver = await client.apis.apps.v1.namespaces('venue-dev').deployments('venue-deployment').get();
                     serverDeployment.metadata.namespace = "venue-uat";
+                    serverDeployment.spec.template.spec.containers[0].env[0].value = "uat";
                     serverDeployment.spec.template.spec.containers[0].image = devserver.body.spec.template.spec.containers[0].image;
                     const createuat = await client.apis.extensions.v1beta1.namespaces('venue-uat').deployments( 'venue-deployment').put({ body: serverDeployment })
                     
                     serverDeployment.metadata.namespace = "venue-perf";
+                    serverDeployment.spec.template.spec.containers[0].env[0].value = "perf";
                     const createperf = await client.apis.extensions.v1beta1.namespaces('venue-perf').deployments( 'venue-deployment').put({ body: serverDeployment })
                     res.send("Server: Please check that the update has been successful.");
                 })();
