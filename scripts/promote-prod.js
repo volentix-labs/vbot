@@ -39,6 +39,8 @@ module.exports = function(robot) {
                     const devserver = await client.apis.apps.v1.namespaces('venue-uat').deployments('venue-deployment').get();
                     serverDeployment.metadata.namespace = "venue-prod";
                     serverDeployment.spec.template.spec.containers[0].env[0].value = "prod";
+                    serverDeployment.spec.template.spec.containers[0].env[1].value = "https://venue.volentix.io";
+                    serverDeployment.spec.template.spec.containers[0].env[2].value = "https://venue.volentix.io";
                     serverDeployment.spec.template.spec.containers[0].image = devserver.body.spec.template.spec.containers[0].image;
                     const createuat = await client.apis.extensions.v1beta1.namespaces('venue-prod').deployments( 'venue-deployment').put({ body: serverDeployment })
                     res.send("Server: Please check that the update has been successful.");

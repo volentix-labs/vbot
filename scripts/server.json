@@ -43,6 +43,14 @@
 								"value": "dev"
 							},
 							{
+								"name": "VENUE_DOMAIN",
+								"value": "REPLACEME"
+							},
+							{
+								"name": "VENUE_FRONTEND",
+								"value": "REPLACEME"
+							},
+							{
 								"name": "POSTGRES_USER",
 								"valueFrom": {
 									"secretKeyRef": {
@@ -72,14 +80,6 @@
 							{
 								"name": "POSTGRES_HOST",
 								"value": "postgres-service"
-							},
-							{
-								"name": "VENUE_DOMAIN",
-								"value": "https://venue-uat.volentix.io"
-							},
-							{
-								"name": "VENUE_FRONTEND",
-								"value": "https://venue-uat.volentix.io"
 							},
 							{
 								"name": "REDIS_HOST",
